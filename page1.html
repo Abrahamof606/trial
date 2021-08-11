@@ -593,166 +593,10 @@
 
 
 <!-- This is the post a Park screen  -->
-      <div class="screen" id="form">
+      <a href="page1.html"><div class="screen" id="form"></a>
 <!-- Here is where I am going to have the map part that will only show the Parks onto the map as red indicators -->
- <center>
-<h1>Parks in Little Village</h1>
-  </center>
-<div id="googleMap" style="width:100%;height:400px;"></div>
- <div id="currentLocation">
-  </div>
-<script>
-let map;
-function myMap() {
-var mapProp= {
-  // This has been changed to meet the requirment of being centered at little village
-  center:new google.maps.LatLng(41.846996,-87.705315),
-  zoom:15,
-};
-map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-if (navigator.geolocation) {
-    navigator.geolocation.watchPosition(showPosition);
-}
-// <!-- add a div element to the html and in the show position log it -->
-//for drawing circles
-console.log("hello");
-// const cityCircle = new google.maps.Circle({
-//       strokeColor: "#FF0000",
-//       strokeOpacity: 0.8,
-//       strokeWeight: 2,
-//       fillColor: "#FF0000",
-//       fillOpacity: 0.35,
-//       map,
-//       center: new google.maps.LatLng(41.931293499999995,-87.766255),
-//       radius: 60,
-//     });
-}
-//this is to point out the location of the user
-console.log("goodbye")
-function showPosition(position) {
-  let cityCircle = new google.maps.Circle({
-      strokeColor: "#FF0000",
-      strokeOpacity: 0.8,
-      strokeWeight: 2,
-      fillColor: "#FF0000",
-      fillOpacity: 0.35,
-      map,
-      center: new google.maps.LatLng(position.coords.latitude,position.coords.longitude),
-      radius: 30,
-    });
-    console.log(position.coords.latitude , 
-     position.coords.longitude);
-    map.setCenter(new google.maps.LatLng(position.coords.latitude,position.coords.longitude));
-  let p =document.createElement("p")
-  p.innerText=(position.coords.latitude.toString()) + "," + (position.coords.longitude.toString() + " "+(new Date()))
-  document.querySelector('#currentLocation').prepend(p)
-}
-</script>
-<center>
-  <div class="card">
-  <div class="card-body">
-    <p>Click on the map in order to see the locations of the parks, and then read the key below to understand the cards.</p>
-  </div>
-</div>
-<center>
-<!-- here is where I am going to drop the card template -->
-
-<div class="container">
-
-<div class="row">
-<div class="card template" >
-<div class="card-body">
-<h5 class="card-title" style="color: black;">Name of the location</h5>
-<h6 class="card-subtitle mb-2 text-muted" style="color: black;">Address</h6>
-<p class="card-text" style="color: black;">What the place provides</p>
-<!-- <h7 class="asdf">What the park offers</h7> -->
-<a style="color: black;">Link of the park</a>
-     
-</div> 
-<br>
-</div>
-</div>
-<br>
-</div>
-
-<!-- Here is where I am going to populate the cards -->
-<script>
-  // the collection of data that I have made
-let site="https://abraham-moraes-arroyo.github.io/TA98Park/Parkdata.json"
-// At the moment I am going to leave the .template as is, because I want to see how far I can get.
-let template=document.querySelector(".template");
-
-//this is to make the card appear
-
-document.querySelector("#googleMap").addEventListener("click", (event) =>{
-  document.querySelectorAll(".ward_card").forEach((node) =>
-  {
-    // were we get rid of the first card, so we only get the cards that we want
-    node.remove()
-  });
-
-  // Here I am going to do a fetch request where I will take the weeb and then populate the cards.
-
-  fetch(site)
-  .then( (response) => {return response.json() })
-  .then ((data) => {
-    data.forEach((item) =>{
-      let clone=template.cloneNode(true);
-      // Here is where I get the name of the park/public place and have it be the title of the card
-      let h5 =clone.querySelector("h5.card-title")
-      // where we actually put in the the actual name
-      h5.innerText=item.location;
-      let h6=clone.querySelector("h6.card-subtitle")
-      h6.innerText=item.address;
-      // For the park one I am going to have to comment the line below because we don't have a link for the parks.
-      let a=clone.querySelector("a")
-      a.innerText=item.website
-      let p=clone.querySelector("p.card-text")
-      p.innerText=item.description
-      // Below is for the school data.
-      // let h7=clone.querySelector("h7.asdf")
-      // h7.innerText=item.students
-
-      // At the moment I am only going to add those two because I want to see if it actually works or not.
-
-      // to clean the cards that may become duplicates or other errors
-       clone.classList.remove("template");
-        clone.classList.add("ward_card")
-       template.parentElement.append(clone);
-    })
-  })
-});
-</script>
-<!-- end of card script -->
-
-
-<!-- Here is where I am going to be doing the research for the API endpooint -->
-<script>
-  // Here is where I will place the link to the json file that I made
-  let  weeb= "https://abraham-moraes-arroyo.github.io/TA98Park/Parkdata.json";
-  fetch (weeb)
-          .then ( ( response ) => { return response.json() })
-          .then ( (data) => {
-            // console.log(data)
-            data.forEach( (location) => {
-                console.log(location.longitude , location.latitude)
-                //make map markers
-                 // The marker, positioned at Uluru
-                  const marker = new google.maps.Marker({
-                    position: { lat: parseFloat(location.latitude), lng: parseFloat(location.longitude) },
-                    map: map,
-                  });
-            });
-});  
-
-
-
-</script>
-<!-- I deleted the work that I had because it was getting me a head ache so I just restarted it... -->
-<!-- this is to have the map be displayed, it contains the API key from google -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLUf62RCvErgmFdYnI8TMcBn9MoNcYcCU&callback=myMap"></script>
-</body>
-
+ 
+  <a href="page2.html"</a>
 
       </div>
     <!-- end of the post a Park page -->
@@ -762,7 +606,167 @@ document.querySelector("#googleMap").addEventListener("click", (event) =>{
       <!-- Recruitment School and public places page -->
       <div class="screen" id="data">
         <!-- This is for the School and Public places Tab  -->
+<center>
+  <h1>Schools and Public Places in Little Village</h1>
+    </center>
+  <div id="googleMap" style="width:100%;height:400px;"></div>
+  <div id="currentLocation">
+    </div>
+  <script>
+  let mapa;
+  function myMap() {
+  var mapProp= {
+    // This has been changed to meet the requirment of being centered at little village
+    center:new google.maps.LatLng(41.846996,-87.705315),
+    zoom:15,
+  };
+  map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+  if (navigator.geolocation) {
+      navigator.geolocation.watchPosition(showPosition);
+  }
+  // <!-- add a div element to the html and in the show position log it -->
+  //for drawing circles
+  console.log("hello");
+  // const cityCircle = new google.maps.Circle({
+  //       strokeColor: "#FF0000",
+  //       strokeOpacity: 0.8,
+  //       strokeWeight: 2,
+  //       fillColor: "#FF0000",
+  //       fillOpacity: 0.35,
+  //       map,
+  //       center: new google.maps.LatLng(41.931293499999995,-87.766255),
+  //       radius: 60,
+  //     });
+  }
+  //this is to point out the location of the user
+  console.log("goodbye")
+  function showPosition(position) {
+    let cityCircle = new google.maps.Circle({
+        strokeColor: "#FF0000",
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: "#FF0000",
+        fillOpacity: 0.35,
+        map,
+        center: new google.maps.LatLng(position.coords.latitude,position.coords.longitude),
+        radius: 30,
+      });
+      console.log(position.coords.latitude , 
+      position.coords.longitude);
+      map.setCenter(new google.maps.LatLng(position.coords.latitude,position.coords.longitude));
+    let p =document.createElement("p")
+    p.innerText=(position.coords.latitude.toString()) + "," + (position.coords.longitude.toString() + " "+(new Date()))
+    document.querySelector('#currentLocation').prepend(p)
+  }
+  </script>
+  <center>
+    <div class="card">
+    <div class="card-body">
+      <p>Click on the map in order to see the locations of the parks, and then read the key below to understand the cards.</p>
+    </div>
+  </div>
+  <center>
+  <!-- here is where I am going to drop the card template -->
 
+  <div class="container">
+
+  <div class="row">
+  <div class="card template" >
+  <div class="card-body">
+  <h5 class="card-title" style="color: black;">Name of the location</h5>
+  <h6 class="card-subtitle mb-2 text-muted">Address</h6>
+  <p class="card-text">The Grade Levels at the school</p>
+  <h7 class="asdf">The number of Students</h7>
+  <br>
+  <h8 class="qwert">What the public place provides</h8>
+  <!-- <a>Link of the park</a> -->
+      
+  </div> 
+  <br>
+  </div>
+  </div>
+  <br>
+  </div>
+
+  <!-- Here is where I am going to populate the cards -->
+  <script>
+    // the collection of data that I have made
+  let wsite="https://abraham-moraes-arroyo.github.io/TA98SchoolData/school.json"
+  // At the moment I am going to leave the .template as is, because I want to see how far I can get.
+  let templat=document.querySelector(".template");
+
+  //this is to make the card appear
+
+  document.querySelector("#googleMap").addEventListener("click", (event) =>{
+    document.querySelectorAll(".ward_card").forEach((node) =>
+    {
+      // were we get rid of the first card, so we only get the cards that we want
+      node.remove()
+    });
+
+    // Here I am going to do a fetch request where I will take the web and then populate the cards.
+
+    fetch(wsite)
+    .then( (response) => {return response.json() })
+    .then ((data) => {
+      data.forEach((item) =>{
+        let clone=templat.cloneNode(true);
+        // Here is where I get the name of the park/public place and have it be the title of the card
+        let h5 =clone.querySelector("h5.card-title")
+        // where we actually put in the the actual name
+        h5.innerText=item.school;
+        let h6=clone.querySelector("h6.card-subtitle")
+        h6.innerText=item.address;
+        // For the park one I am going to have to comment the line below because we don't have a link for the parks.
+        // let a=clone.querySelector("a")
+        // a.innerText=item.website
+        let p=clone.querySelector("p.card-text")
+        p.innerText=item.description
+        // Below is for the school data.
+        let h7=clone.querySelector("h7.asdf")
+        h7.innerText=item.students
+
+        let h8= clone.querySelector("h8.qwert")
+        h8.innerText=item.facilities  
+
+        // At the moment I am only going to add those two because I want to see if it actually works or not.
+
+        // to clean the cards that may become duplicates or other errors
+        clone.classList.remove("template");
+          clone.classList.add("ward_card")
+        templat.parentElement.append(clone);
+      })
+    })
+  });
+  </script>
+  <!-- end of card script -->
+
+
+  <!-- Here is where I am going to be doing the research for the API endpooint -->
+  <script>
+    // Here is where I will place the link to the json file that I made
+    let  web= "https://abraham-moraes-arroyo.github.io/TA98SchoolData/school.json";
+    fetch (web)
+            .then ( ( response ) => { return response.json() })
+            .then ( (data) => {
+              // console.log(data)
+              data.forEach( (location) => {
+                  console.log(location.longitude , location.latitude)
+                  //make map markers
+                  // The marker, positioned at Uluru
+                    const marker = new google.maps.Marker({
+                      position: { lat: parseFloat(location.latitude), lng: parseFloat(location.longitude) },
+                      map: map,
+                    });
+              });
+  });  
+
+
+
+  </script>
+  <!-- I deleted the work that I had because it was getting me a head ache so I just restarted it... -->
+  <!-- this is to have the map be displayed, it contains the API key from google -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLUf62RCvErgmFdYnI8TMcBn9MoNcYcCU&callback=myMap"></script>
 
 
 
@@ -833,9 +837,14 @@ document.querySelector("#googleMap").addEventListener("click", (event) =>{
     <!-- End of the Diversity Practice page  -->
 
 
-    <!-- Start of the Events Page  -->
+    <!-- Start of the about us Page  -->
       <div class="screen" id="about">
         <h1>Works<h1>
+        <!-- here is where I am going to have the rederict page -->
+
+
+
+
       </div>
     <!-- End of Events Page -->
 
